@@ -38,3 +38,27 @@ The python flask api for grabbing waifu images and text
   "image_url": "https://cdn.nekosapi.com/images/original/538e4de9-2972-40e8-a6fb-3bbb3b2a521c.webp"
 }
 ```
+
+### Get or Post conversation
+**Request**
+```
+let data = qs.stringify({
+  'user_message': 'hi there elle! how are you?' 
+});
+
+let config = {
+  method: 'post',
+  url: 'http://127.0.0.1:5000/conversation',
+  headers: { 
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  data : data
+};
+```
+
+**Response**
+```
+{
+  "bot_message": "I'm doing great! How are you?"
+}
+```

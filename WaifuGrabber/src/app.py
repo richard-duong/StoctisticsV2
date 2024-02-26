@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+import langchain
 import nekos
 import json
 import requests
 import ipdb
 
+CONVERSATION = []
+
 app = Flask(__name__)
 
 
-@app.route("/get_waifu_image/<string:gender>/<int:age>")
+@app.route("/get_waifu_image/<string:gender>/<int:age>", methods=["GET"])
 def get_waifu_image(gender: str, age: int):
     """Response format
     response = {
@@ -35,6 +38,12 @@ def get_waifu_image(gender: str, age: int):
         # TODO rotate images
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+@app.route("/conversation", methods=["GET", "POST"])
+def request_response_conversation():
+    message = request.form("user_message")
+    return jsonify({"bot_message": f"im a bot and i saw you sent me this: {message}"})
 
 
 if __name__ == "__main__":

@@ -1,2 +1,3 @@
 flask
 nekos.py
+python-dotenv
